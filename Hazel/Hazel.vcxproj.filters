@@ -27,9 +27,15 @@
     <ClInclude Include="src\hazel\entry_point.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\hazel\log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\hazel\application.cc">
+    <ClCompile Include="src\hazel\application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hazel\log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
