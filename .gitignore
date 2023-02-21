@@ -1,6 +1,6 @@
 .vs
 bin
-temp
+bin_int
 *.user
 
 # Prerequisites

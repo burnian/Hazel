@@ -11,6 +11,6 @@ Sandbox::Sandbox() {}
 Sandbox::~Sandbox() {}
 
 hazel::Application* hazel::CreateApplication() {
-  // APP_INFO("Welcome to spdlog! {},{}", __FILE__, __LINE__);
+  APP_INFO("Welcome to Sandbox!");
   return new Sandbox();
 }
