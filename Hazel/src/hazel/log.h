@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "core.h"
+//#include "spdlog/fmt/ostr.h"  // to enable operator<< in event.h
 #include "spdlog/spdlog.h"
 
 namespace hazel {

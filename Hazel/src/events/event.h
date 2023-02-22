@@ -5,6 +5,7 @@
 #include <string>
 
 #include "hazel/core.h"
+#include "hazel/log.h"
 
 namespace hazel {
 
@@ -27,6 +28,7 @@ enum class EventType {
 
   KeyPressed,
   KeyReleased,
+  KeyTyped,
 
   MouseMoved,
   MouseScrolled,
@@ -61,7 +63,7 @@ class HAZEL_API Event {
   virtual int GetCategoryFlags() const = 0;
   virtual std::string ToString() const { return GetName(); };
 
-  inline bool IsInCategory(EventCategory category) {
+  bool IsInCategory(EventCategory category) {
     return GetCategoryFlags() & category;
   }
 
@@ -69,24 +71,26 @@ class HAZEL_API Event {
   bool handled_ = false;
 };
 
-class EventDispatcher {
-  template <typename T>
-  using EventFunc=std::function<bool(T&)>;
-  public:
-    EventDispatcher (Event& event):event_(event){}
+class HAZEL_API EventDispatcher {
+ public:
+  EventDispatcher(Event& event) : event_(event) {}
 
-  template <typename T>
-  bool Dispatch(EventFunc<T> func) {
+  template <typename T, typename F>
+  bool Dispatch(const F& func) {
     if (event_.GetType() == T::GetStaticType()) {
-      event_.handled_=func(*(T*)&event_);
+      event_.handled_ |= func(static_cast<T&>(event_));
       return true;
     }
-      return false;
-    }
+    return false;
+  }
 
-  private:
-    Event& event_;
+ private:
+  Event& event_;
 };
+
+std::ostream& operator<<(std::ostream& os, const Event& e) {
+  return os << e.ToString();
+}
 
 }  // namespace hazel
 #endif

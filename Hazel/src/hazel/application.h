@@ -2,6 +2,7 @@
 #define _APPLICATION_H_
 
 #include "core.h"
+#include "events/event.h"
 
 namespace hazel {
 

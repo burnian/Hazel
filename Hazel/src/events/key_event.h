@@ -4,56 +4,67 @@
 #include <sstream>
 
 #include "event.h"
+#include "hazel/key_codes.h"
 
 namespace hazel {
+
 class HAZEL_API KeyEvent : public Event {
  public:
-  inline int GetKeyCode() const { return key_code_; }
+  int GetKeyCode() const { return key_code_; }
 
   EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
  protected:
-  KeyEvent(int key_code) : key_code_(key_code) {}
+  KeyEvent(const KeyCode key_code) : key_code_(key_code) {}
 
-  int key_code_;
+  KeyCode key_code_;
 };
 
-class HAZEL_API KeyPressedEvent :public KeyEvent {
-  public:
-    KeyPressedEvent(int key_code,int repeat_count):KeyEvent(key_code),repeat_count_(repeat_count){}
+class HAZEL_API KeyPressedEvent : public KeyEvent {
+ public:
+  KeyPressedEvent(const KeyCode key_code, bool is_repeat = false)
+      : KeyEvent(key_code), is_repeat_(is_repeat) {}
 
-    inline int GetRepeatCount()const{return repeat_count_;}
+  bool IsRepeat() const { return is_repeat_; }
 
   std::string ToString() const override {
     std::stringstream ss;
-    ss << "KeyPressedEvent: " << key_code_ << " (" << repeat_count_<<" repeats)";
+    ss << "KeyPressedEvent: " << key_code_ << " (repeat = " << is_repeat_
+       << ")";
     return ss.str();
   }
 
   EVENT_CLASS_TYPE(KeyPressed)
 
-  private:
-    int repeat_count_;
+ private:
+  bool is_repeat_;
 };
 
-class HAZEL_API KeyReleasedEvent :public KeyEvent {
-  public:
-    KeyPressedEvent(int key_code,int repeat_count):KeyEvent(key_code),repeat_count_(repeat_count){}
-
-    inline int GetRepeatCount()const{return repeat_count_;}
+class HAZEL_API KeyReleasedEvent : public KeyEvent {
+ public:
+  KeyReleasedEvent(const KeyCode key_code) : KeyEvent(key_code) {}
 
   std::string ToString() const override {
     std::stringstream ss;
-    ss << "KeyPressedEvent: " << key_code_ << " (" << repeat_count_<<" repeats)";
+    ss << "KeyReleasedEvent: " << key_code_;
     return ss.str();
   }
 
   EVENT_CLASS_TYPE(KeyPressed)
+};
 
-  private:
-    int repeat_count_;
+class HAZEL_API KeyTypedEvent : public KeyEvent {
+ public:
+  KeyTypedEvent(const KeyCode key_code) : KeyEvent(key_code) {}
+
+  std::string ToString() const override {
+    std::stringstream ss;
+    ss << "KeyTypedEvent: " << key_code_;
+    return ss.str();
+  }
+
+  EVENT_CLASS_TYPE(KeyTyped)
 };
 
 }  // namespace hazel
-
 #endif
