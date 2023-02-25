@@ -3,7 +3,7 @@
 
 #include <sstream>
 
-#include "events/event.h"
+#include "event.h"
 #include "hazel/mouse_codes.h"
 
 namespace hazel {

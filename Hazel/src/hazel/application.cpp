@@ -13,10 +13,10 @@ void Application::Run() {
   WindowResizeEvent e(1200, 720);
 
   if (e.IsInCategory(EventCategoryApp)) {
-    CORE_TRACE("event category app, {}", e.ToString());
+    CORE_INFO("event category app, {}", e);
   }
   if (e.IsInCategory(EventCategoryInput)) {
-    CORE_TRACE("event category input, {}", e.ToString());
+    CORE_INFO("event category input, {}", e);
   }
 
   while (true) {

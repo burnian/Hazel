@@ -1,11 +1,16 @@
 #ifndef _LOG_H_
 #define _LOG_H_
 
-#include <memory>
-
 #include "core.h"
-//#include "spdlog/fmt/ostr.h"  // to enable operator<< in event.h
-#include "spdlog/spdlog.h"
+
+// This ignores all warnings raised inside External headers
+//#pragma warning(push, 0)
+#include <spdlog/spdlog.h>
+// to enable operator<< in event.h, must be included after spdlog.h or will
+// break down
+#include "spdlog/fmt/ostr.h"
+
+//#pragma warning(pop)
 
 namespace hazel {
 
@@ -13,17 +18,29 @@ class HAZEL_API Log {
  public:
   static void Init();
 
-  inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() {
-    return sp_core_logger_;
-  }
-  inline static std::shared_ptr<spdlog::logger>& GetClientLogger() {
-    return sp_client_logger_;
-  }
+  static Ref<spdlog::logger> &GetCoreLogger() { return sp_core_logger_; }
+  static Ref<spdlog::logger> &GetClientLogger() { return sp_client_logger_; }
 
  private:
-  static std::shared_ptr<spdlog::logger> sp_core_logger_;
-  static std::shared_ptr<spdlog::logger> sp_client_logger_;
+  static Ref<spdlog::logger> sp_core_logger_;
+  static Ref<spdlog::logger> sp_client_logger_;
 };
+
+// template <typename OStream, glm::length_t L, typename T, glm::qualifier Q>
+// inline OStream &operator<<(OStream &os, const glm::vec<L, T, Q> &vector) {
+//   return os << glm::to_string(vector);
+// }
+//
+// template <typename OStream, glm::length_t C, glm::length_t R, typename T,
+//           glm::qualifier Q>
+// inline OStream &operator<<(OStream &os, const glm::mat<C, R, T, Q> &matrix) {
+//   return os << glm::to_string(matrix);
+// }
+//
+// template <typename OStream, typename T, glm::qualifier Q>
+// inline OStream &operator<<(OStream &os, glm::qua<T, Q> quaternion) {
+//   return os << glm::to_string(quaternion);
+// }
 
 }  // namespace hazel
 

@@ -12,8 +12,8 @@ class HAZEL_API WindowResizeEvent : public Event {
   WindowResizeEvent(size_t width, size_t height)
       : width_(width), height_(height) {}
 
-  inline size_t GetWidth() const { return width_; }
-  inline size_t GetHeight() const { return height_; }
+  size_t GetWidth() const { return width_; }
+  size_t GetHeight() const { return height_; }
 
   std::string ToString() const override {
     std::stringstream ss;

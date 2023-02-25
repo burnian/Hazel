@@ -88,7 +88,8 @@ class HAZEL_API EventDispatcher {
   Event& event_;
 };
 
-std::ostream& operator<<(std::ostream& os, const Event& e) {
+template <typename OStream>
+inline OStream& operator<<(OStream& os, const Event& e) {
   return os << e.ToString();
 }
 
