@@ -1,7 +1,5 @@
-#ifndef _CORE_H_
-#define _CORE_H_
-
-#include <memory>
+#pragma once
+#include "pch.h"
 
 #ifdef HAZEL_PLATFORM_WINDOWS
 
@@ -36,5 +34,3 @@ constexpr Ref<T> CreateRef(Args&&... args) {
 }
 
 }  // namespace hazel
-
-#endif

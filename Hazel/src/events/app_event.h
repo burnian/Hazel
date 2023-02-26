@@ -1,8 +1,4 @@
-#ifndef _APP_EVENT_H_
-#define _APP_EVENT_H_
-
-#include <sstream>
-
+#pragma once
 #include "event.h"
 
 namespace hazel {
@@ -61,4 +57,3 @@ class HAZEL_API AppRenderEvent : public Event {
 };
 
 }  // namespace hazel
-#endif

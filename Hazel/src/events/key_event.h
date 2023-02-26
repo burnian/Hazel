@@ -1,8 +1,4 @@
-#ifndef _KEY_EVENT_H_
-#define _KEY_EVENT_H_
-
-#include <sstream>
-
+#pragma once
 #include "event.h"
 #include "hazel/key_codes.h"
 
@@ -67,4 +63,3 @@ class HAZEL_API KeyTypedEvent : public KeyEvent {
 };
 
 }  // namespace hazel
-#endif

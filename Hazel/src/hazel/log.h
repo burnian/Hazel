@@ -1,7 +1,5 @@
-#ifndef _LOG_H_
-#define _LOG_H_
-
-#include "core.h"
+#pragma once
+#include "core.hpp"
 
 // This ignores all warnings raised inside External headers
 //#pragma warning(push, 0)
@@ -59,5 +57,3 @@ class HAZEL_API Log {
 #define APP_WARN(...) ::hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define APP_ERROR(...) ::hazel::Log::GetClientLogger()->error(__VA_ARGS__)
 #define APP_FATAL(...) ::hazel::Log::GetClientLogger()->critical(__VA_ARGS__)
-
-#endif

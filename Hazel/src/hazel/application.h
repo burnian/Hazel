@@ -1,7 +1,5 @@
-#ifndef _APPLICATION_H_
-#define _APPLICATION_H_
-
-#include "core.h"
+#pragma once
+#include "core.hpp"
 #include "events/event.h"
 
 namespace hazel {
@@ -18,5 +16,3 @@ class HAZEL_API Application {
 Application* CreateApplication();
 
 }  // namespace hazel
-
-#endif

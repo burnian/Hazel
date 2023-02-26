@@ -1,10 +1,5 @@
-#ifndef _EVENT_H_
-#define _EVENT_H_
-
-#include <functional>
-#include <string>
-
-#include "hazel/core.h"
+#pragma once
+#include "hazel/core.hpp"
 #include "hazel/log.h"
 
 namespace hazel {
@@ -94,4 +89,3 @@ inline OStream& operator<<(OStream& os, const Event& e) {
 }
 
 }  // namespace hazel
-#endif

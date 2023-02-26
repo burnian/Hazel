@@ -1,5 +1,4 @@
-#ifndef _KEY_CODES_H_
-#define _KEY_CODES_H_
+#pragma once
 
 namespace hazel {
 
@@ -143,4 +142,3 @@ enum : KeyCode {
 
 }  // namespace key
 }  // namespace hazel
-#endif

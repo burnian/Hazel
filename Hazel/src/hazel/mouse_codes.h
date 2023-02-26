@@ -1,5 +1,4 @@
-#ifndef _MOUSE_CODES_H_
-#define _MOUSE_CODES_H_
+#pragma once
 
 namespace hazel {
 
@@ -26,4 +25,3 @@ enum : MouseCode {
 
 }  // namespace mouse
 }  // namespace hazel
-#endif
