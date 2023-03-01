@@ -1,7 +1,7 @@
 .vs
+.vscode
+*.sln
+*.vcxproj*
+
 bin
 bin_int
-*.sln
-*.user
-*.vcxproj
-*.filters
