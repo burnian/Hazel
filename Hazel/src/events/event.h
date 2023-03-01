@@ -1,5 +1,4 @@
 #pragma once
-#include "hazel/core.hpp"
 #include "hazel/log.h"
 
 namespace hazel {
