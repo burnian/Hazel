@@ -1,6 +1,6 @@
 #pragma once
-#include "core.hpp"
 #include "events/event.h"
+#include "window.h"
 
 namespace hazel {
 
@@ -10,6 +10,10 @@ class HAZEL_API Application {
   virtual ~Application();
 
   void Run();
+
+ private:
+  Scope<Window> window_;
+  bool running_ = true;
 };
 
 // to be defined in CLIENT

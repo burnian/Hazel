@@ -6,21 +6,19 @@
 
 namespace hazel {
 
-Application::Application() {}
+Application::Application() { window_ = Window::Create(); }
 
 Application::~Application() {}
 
 void Application::Run() {
-  WindowResizeEvent e(1200, 720);
+  // WindowResizeEvent e(1200, 720);
 
-  if (e.IsInCategory(EventCategoryApp)) {
-    CORE_INFO("event category app, {}", e);
-  }
-  if (e.IsInCategory(EventCategoryInput)) {
-    CORE_INFO("event category input, {}", e);
-  }
+  // if (e.IsInCategory(EventCategoryApp)) {
+  //   CORE_INFO("event category app, {}", e);
+  // }
 
-  while (true) {
+  while (running_) {
+    window_->OnUpdate();
   }
 }
 
