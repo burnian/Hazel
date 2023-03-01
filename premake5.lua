@@ -1,13 +1,19 @@
 workspace "Hazel"
 	architecture "x64"
 
-	configurations{
+	configurations {
 		"Debug",
 		"Release",
 		"Dist"
 	}
 
 outputdir = "%{cfg.buildcfg}_%{cfg.system}_%{cfg.architecture}"
+
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Hazel/vendor/glfw/include"
+
+include "Hazel/vendor/glfw"
 
 project "Hazel"
 	location "Hazel"
@@ -20,16 +26,22 @@ project "Hazel"
 	pchheader"pch.h"
 	pchsource"Hazel/src/pch.cpp"
 
-	files{
+	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.hpp",
 		"%{prj.name}/src/**.cc",
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs{
+	includedirs {
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -37,12 +49,13 @@ project "Hazel"
 		staticruntime "On"
 		systemversion "latest"
 
-		defines{
+		defines {
 			"HAZEL_PLATFORM_WINDOWS",
 			"HAZEL_BUILD_DLL"
+			-- "HAZEL_ENABLE_ASSERTS"
 		}
 
-		postbuildcommands{
+		postbuildcommands {
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
 
@@ -58,27 +71,28 @@ project "Hazel"
 		defines "HAZEL_DIST"
 		optimize "On"
 
+
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin_int/" .. outputdir .. "/%{prj.name}")
+	targetdir("bin/" .. outputdir .. "/%{prj.name}")
+	objdir("bin_int/" .. outputdir .. "/%{prj.name}")
 
-	files{
+	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.hpp",
 		"%{prj.name}/src/**.cc",
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs{
+	includedirs {
 		"Hazel/vendor/spdlog/include",
 		"Hazel/src"
 	}
 
-	links{
+	links {
 		"Hazel"
 	}
 
@@ -87,7 +101,7 @@ project "Sandbox"
 		staticruntime "On"
 		systemversion "latest"
 
-		defines{
+		defines {
 			"HAZEL_PLATFORM_WINDOWS"
 		}
 
