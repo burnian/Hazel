@@ -1,8 +1,7 @@
-#include "pch.h"
+#include "hazel_pch.h"
 #include "application.h"
 
 #include "events/app_event.h"
-#include "log.h"
 
 namespace hazel {
 

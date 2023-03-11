@@ -1,5 +1,5 @@
 #pragma once
-#include "pch.h"
+#include "hazel_pch.h"
 
 #ifdef HAZEL_PLATFORM_WINDOWS
 

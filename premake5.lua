@@ -23,8 +23,8 @@ project "Hazel"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin_int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader"pch.h"
-	pchsource"Hazel/src/pch.cpp"
+	pchheader"hazel_pch.h"
+	pchsource"Hazel/src/hazel_pch.cpp"
 
 	files {
 		"%{prj.name}/src/**.h",
@@ -51,8 +51,8 @@ project "Hazel"
 
 		defines {
 			"HAZEL_PLATFORM_WINDOWS",
-			"HAZEL_BUILD_DLL"
-			-- "HAZEL_ENABLE_ASSERTS"
+			"HAZEL_BUILD_DLL",
+			"HAZEL_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands {

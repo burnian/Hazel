@@ -10,6 +10,8 @@
 #include <utility>
 #include <vector>
 
+#include "hazel/log.h"
+
 #ifdef HAZEL_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif  // HAZEL_PLATFORM_WINDOWS

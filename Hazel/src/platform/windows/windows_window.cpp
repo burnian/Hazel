@@ -1,13 +1,13 @@
-#include "pch.h"
+#include "hazel_pch.h"
 #include "platform/windows/windows_window.h"
 
 #include "events/app_event.h"
 #include "events/key_event.h"
 #include "events/mouse_event.h"
 #include "hazel/assert.h"
-//#include "Platform/OpenGL/OpenGLContext.h"
-//#include "hazel/Renderer/Renderer.h"
-//#include "hazel/Core/Input.h"
+// #include "Platform/OpenGL/OpenGLContext.h"
+// #include "hazel/Renderer/Renderer.h"
+// #include "hazel/Core/Input.h"
 
 namespace hazel {
 
@@ -35,7 +35,7 @@ void WindowsWindow::Init(const WindowProps& props) {
   if (kGLFWWindowCount == 0) {
     // HZ_PROFILE_SCOPE("glfwInit");
     int success = glfwInit();
-    HAZEL_CORE_ASSERT(success, "Failed to initialize GLFW!");
+    CORE_ASSERT(success, "Failed to initialize GLFW!");
 
     glfwSetErrorCallback([](int error, const char* desc) {
       CORE_ERROR("GLFW Error ({}): {}", error, desc);
@@ -44,10 +44,10 @@ void WindowsWindow::Init(const WindowProps& props) {
 
   {
     // HZ_PROFILE_SCOPE("glfwCreateWindow");
-    //#if defined(HAZEL_DEBUG)
+    // #if defined(HAZEL_DEBUG)
     //    if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
     //      glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
-    //#endif
+    // #endif
     window_ = glfwCreateWindow(int(data_.width), int(data_.height),
                                data_.title.c_str(), nullptr, nullptr);
     ++kGLFWWindowCount;
