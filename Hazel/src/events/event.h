@@ -49,8 +49,6 @@ enum EventCategory {
   virtual int GetCategoryFlags() const override { return category; }
 
 class HAZEL_API Event {
-  friend class EventDispatcher;
-
  public:
   virtual EventType GetType() const = 0;
   virtual const char* GetName() const = 0;
@@ -61,8 +59,7 @@ class HAZEL_API Event {
     return GetCategoryFlags() & category;
   }
 
- protected:
-  bool handled_ = false;
+  bool handled = false;
 };
 
 class HAZEL_API EventDispatcher {
@@ -72,7 +69,7 @@ class HAZEL_API EventDispatcher {
   template <typename T, typename F>
   bool Dispatch(const F& func) {
     if (event_.GetType() == T::GetStaticType()) {
-      event_.handled_ |= func(static_cast<T&>(event_));
+      event_.handled |= func(static_cast<T&>(event_));
       return true;
     }
     return false;

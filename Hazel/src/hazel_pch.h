@@ -10,7 +10,7 @@
 #include <utility>
 #include <vector>
 
-#include "hazel/log.h"
+#include "hazel/assert.h"
 
 #ifdef HAZEL_PLATFORM_WINDOWS
 #include <Windows.h>

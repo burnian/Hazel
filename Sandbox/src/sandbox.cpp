@@ -1,14 +1,22 @@
 #include "hazel.h"
 
-class Sandbox : public hazel::Application {
+class TestLayer : public hazel::Layer {
  public:
-  Sandbox();
-  ~Sandbox();
+  TestLayer() : Layer("Test Layer") {}
+
+  void OnUpdate() override {
+    //APP_INFO(__func__);
+    //APP_INFO(__FUNCTION__);
+  }
+
+  void OnEvent(hazel::Event& e) override { APP_TRACE("{}", e); }
 };
 
-Sandbox::Sandbox() {}
-
-Sandbox::~Sandbox() {}
+class Sandbox : public hazel::Application {
+ public:
+  Sandbox() { PushLayer(new TestLayer()); }
+  ~Sandbox() {}
+};
 
 hazel::Application* hazel::CreateApplication() {
   APP_INFO("Welcome to Sandbox!");
