@@ -1,5 +1,5 @@
 #pragma once
-#include "events/event.h"
+#include "hazel/events/event.h"
 
 namespace hazel {
 

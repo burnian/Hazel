@@ -1,5 +1,5 @@
 #pragma once
-#include "events/app_event.h"
+#include "hazel/events/app_event.h"
 #include "hazel/layer_stack.h"
 #include "window.h"
 

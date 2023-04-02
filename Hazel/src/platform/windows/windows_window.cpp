@@ -1,11 +1,11 @@
 #include "hazel_pch.h"
-#include "platform/windows/windows_window.h"
+#include "windows_window.h"
 
 #include <glad/glad.h> // glad should put here before GLFW since glfw defined GLFW_INCLUDE_NONE
 
-#include "events/app_event.h"
-#include "events/key_event.h"
-#include "events/mouse_event.h"
+#include "hazel/events/app_event.h"
+#include "hazel/events/key_event.h"
+#include "hazel/events/mouse_event.h"
 // #include "Platform/OpenGL/OpenGLContext.h"
 // #include "hazel/Renderer/Renderer.h"
 // #include "hazel/Core/Input.h"
