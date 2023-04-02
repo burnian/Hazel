@@ -1,12 +1,17 @@
 #include "hazel_pch.h"
-
 #include "application.h"
+
 
 namespace hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
+Application* Application::instance_ = nullptr;
+
 Application::Application() {
+  CORE_ASSERT(!instance_, "Application already exists!");
+  instance_ = this;
+
   window_ = Window::Create();
   window_->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 }
@@ -39,9 +44,15 @@ void Application::Run() {
   }
 }
 
-void Application::PushLayer(Layer* layer) { layer_stack_.PushLayer(layer); }
+void Application::PushLayer(Layer* layer) {
+  layer_stack_.PushLayer(layer);
+  layer->OnAttach();
+}
 
-void Application::PushOverlay(Layer* layer) { layer_stack_.PushOverlay(layer); }
+void Application::PushOverlay(Layer* layer) {
+  layer_stack_.PushOverlay(layer);
+  layer->OnAttach();
+}
 
 bool Application::OnWindowClose(WindowCloseEvent& e) {
   running_ = false;

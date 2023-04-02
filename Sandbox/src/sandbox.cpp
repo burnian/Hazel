@@ -5,8 +5,8 @@ class TestLayer : public hazel::Layer {
   TestLayer() : Layer("Test Layer") {}
 
   void OnUpdate() override {
-    //APP_INFO(__func__);
-    //APP_INFO(__FUNCTION__);
+    // APP_INFO(__func__);
+    // APP_INFO(__FUNCTION__);
   }
 
   void OnEvent(hazel::Event& e) override { APP_TRACE("{}", e); }
@@ -14,7 +14,10 @@ class TestLayer : public hazel::Layer {
 
 class Sandbox : public hazel::Application {
  public:
-  Sandbox() { PushLayer(new TestLayer()); }
+  Sandbox() {
+    PushLayer(new TestLayer());
+    PushOverlay(new hazel::ImGuiLayer());
+  }
   ~Sandbox() {}
 };
 

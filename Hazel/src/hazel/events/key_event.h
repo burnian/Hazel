@@ -1,6 +1,6 @@
 #pragma once
 #include "event.h"
-#include "hazel/key_codes.h"
+#include "hazel/core/key_codes.h"
 
 namespace hazel {
 

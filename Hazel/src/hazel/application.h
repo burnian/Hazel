@@ -15,8 +15,13 @@ class HAZEL_API Application {
   void PushLayer(Layer* layer);
   void PushOverlay(Layer* layer);
 
+  static Application& Get() { return *instance_; }
+  Window& GetWindow() { return *window_; }
+
  private:
   bool OnWindowClose(WindowCloseEvent& e);
+
+  static Application* instance_;
 
   Scope<Window> window_;
   bool running_ = true;
