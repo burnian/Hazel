@@ -1,6 +1,8 @@
 #include "hazel_pch.h"
 #include "platform/windows/windows_window.h"
 
+#include <glad/glad.h> // glad should put here before GLFW since glfw defined GLFW_INCLUDE_NONE
+
 #include "events/app_event.h"
 #include "events/key_event.h"
 #include "events/mouse_event.h"
@@ -55,7 +57,8 @@ void WindowsWindow::Init(const WindowProps& props) {
   // context_ = GraphicsContext::Create(window_);
   // context_->Init();
   glfwMakeContextCurrent(window_);
-
+  int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+  CORE_ASSERT(status, "Failed to initialize Glad!");
   glfwSetWindowUserPointer(window_, &data_);
   SetVSync(true);
 

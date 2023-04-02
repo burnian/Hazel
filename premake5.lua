@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}_%{cfg.system}_%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Hazel/vendor/glfw/include"
+IncludeDir["Glad"] = "Hazel/vendor/glad/include"
 
 include "Hazel/vendor/glfw"
+include "Hazel/vendor/glad"
 
 project "Hazel"
 	location "Hazel"
@@ -36,11 +38,13 @@ project "Hazel"
 	includedirs {
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links {
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -52,7 +56,8 @@ project "Hazel"
 		defines {
 			"HAZEL_PLATFORM_WINDOWS",
 			"HAZEL_BUILD_DLL",
-			"HAZEL_ENABLE_ASSERTS"
+			"HAZEL_ENABLE_ASSERTS",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands {

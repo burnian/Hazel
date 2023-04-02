@@ -1,8 +1,10 @@
 #pragma once
 #include <GLFW/glfw3.h>
 
-//#include "Hazel/Renderer/GraphicsContext.h"
 #include "hazel/window.h"
+// #include "Hazel/Renderer/GraphicsContext.h"
+
+struct GLFWwindow;
 
 namespace hazel {
 
