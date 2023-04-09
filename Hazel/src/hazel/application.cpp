@@ -1,10 +1,9 @@
 #include "hazel_pch.h"
 #include "application.h"
 
+#include "hazel/core.hpp"
 
 namespace hazel {
-
-#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
 Application* Application::instance_ = nullptr;
 
@@ -13,7 +12,7 @@ Application::Application() {
   instance_ = this;
 
   window_ = Window::Create();
-  window_->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+  window_->SetEventCallback(HAZEL_BIND_EVENT_FN(Application::OnEvent));
 }
 
 Application::~Application() {}
@@ -21,7 +20,7 @@ Application::~Application() {}
 void Application::OnEvent(Event& e) {
   EventDispatcher dispatcher(e);
   dispatcher.Dispatch<WindowCloseEvent>(
-      BIND_EVENT_FN(Application::OnWindowClose));
+      HAZEL_BIND_EVENT_FN(Application::OnWindowClose));
 
   for (auto it = layer_stack_.end(); it != layer_stack_.begin();) {
     Layer* p_layer = *--it;

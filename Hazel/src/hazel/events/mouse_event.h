@@ -46,7 +46,7 @@ class HAZEL_API MouseScrolledEvent : public Event {
 
 class HAZEL_API MouseButtonEvent : public Event {
  public:
-  MouseCode GetMouseCode() const { return mouse_code_; }
+  MouseCode GetMouseButton() const { return mouse_code_; }
 
   EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput |
                        EventCategoryMouseButton)
