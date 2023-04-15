@@ -15,8 +15,6 @@ void Log::Init() {
 
   sp_client_logger_ = spdlog::stdout_color_mt("APP");
   sp_client_logger_->set_level(spdlog::level::trace);
-
-  CORE_INFO("Module Log inited.");
 }
 
 }  // namespace hazel
