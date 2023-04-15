@@ -2,13 +2,13 @@
 #include "core.hpp"
 
 // This ignores all warnings raised inside External headers
-//#pragma warning(push, 0)
+// #pragma warning(push, 0)
 #include "spdlog/spdlog.h"
 // to enable operator<< in event.h, the statament below must be included
 // after spdlog.h, or will break down
 #include "spdlog/fmt/ostr.h"
 
-//#pragma warning(pop)
+// #pragma warning(pop)
 
 namespace hazel {
 
@@ -43,12 +43,18 @@ class HAZEL_API Log {
 }  // namespace hazel
 
 // core log macros
-#define CORE_TRACE(...) ::hazel::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define CORE_DEBUG(...) ::hazel::Log::GetCoreLogger()->debug(__VA_ARGS__)
-#define CORE_INFO(...) ::hazel::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define CORE_WARN(...) ::hazel::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define CORE_ERROR(...) ::hazel::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define CORE_FATAL(...) ::hazel::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define CORE_TRACE(...) \
+  ::hazel::Log::GetCoreLogger()->trace(__VA_ARGS__)  // white
+#define CORE_DEBUG(...) \
+  ::hazel::Log::GetCoreLogger()->debug(__VA_ARGS__)  // blue
+#define CORE_INFO(...) \
+  ::hazel::Log::GetCoreLogger()->info(__VA_ARGS__)  // green
+#define CORE_WARN(...) \
+  ::hazel::Log::GetCoreLogger()->warn(__VA_ARGS__)  // yellow
+#define CORE_ERROR(...) \
+  ::hazel::Log::GetCoreLogger()->error(__VA_ARGS__)  // red
+#define CORE_FATAL(...) \
+  ::hazel::Log::GetCoreLogger()->critical(__VA_ARGS__)  // highlight red
 
 // client log macros
 #define APP_TRACE(...) ::hazel::Log::GetClientLogger()->trace(__VA_ARGS__)

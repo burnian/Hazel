@@ -25,7 +25,7 @@ class HAZEL_API WindowsWindow : public Window {
   void SetVSync(bool enabled) override;
   bool IsVSync() const override;
 
-  virtual void* GetNativeWindow() const { return window_; }
+  virtual void* GetNativeWindow() const override { return window_; }
 
  private:
   virtual void Init(const WindowProps& props);

@@ -2,6 +2,7 @@
 #include "application.h"
 
 #include "hazel/core.hpp"
+#include "input.h"
 
 namespace hazel {
 
@@ -38,6 +39,9 @@ void Application::Run() {
   // }
   while (running_) {
     for (Layer* layer : layer_stack_) layer->OnUpdate();
+
+    auto [x, y] = Input::GetMousePos();
+    CORE_TRACE("{}, {}", x, y);
 
     window_->OnUpdate();
   }
