@@ -3,6 +3,7 @@
 
 // This ignores all warnings raised inside External headers
 // #pragma warning(push, 0)
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
 #include "spdlog/spdlog.h"
 // to enable operator<< in event.h, the statament below must be included
 // after spdlog.h, or will break down
@@ -44,22 +45,29 @@ class HAZEL_API Log {
 
 // core log macros
 #define CORE_TRACE(...) \
-  ::hazel::Log::GetCoreLogger()->trace(__VA_ARGS__)  // white
+  SPDLOG_LOGGER_TRACE(::hazel::Log::GetCoreLogger(), __VA_ARGS__)  // white
 #define CORE_DEBUG(...) \
-  ::hazel::Log::GetCoreLogger()->debug(__VA_ARGS__)  // blue
+  SPDLOG_LOGGER_DEBUG(::hazel::Log::GetCoreLogger(), __VA_ARGS__)  // blue
 #define CORE_INFO(...) \
-  ::hazel::Log::GetCoreLogger()->info(__VA_ARGS__)  // green
+  SPDLOG_LOGGER_INFO(::hazel::Log::GetCoreLogger(), __VA_ARGS__)  // green
 #define CORE_WARN(...) \
-  ::hazel::Log::GetCoreLogger()->warn(__VA_ARGS__)  // yellow
+  SPDLOG_LOGGER_WARN(::hazel::Log::GetCoreLogger(), __VA_ARGS__)  // yellow
 #define CORE_ERROR(...) \
-  ::hazel::Log::GetCoreLogger()->error(__VA_ARGS__)  // red
-#define CORE_FATAL(...) \
-  ::hazel::Log::GetCoreLogger()->critical(__VA_ARGS__)  // highlight red
+  SPDLOG_LOGGER_ERROR(::hazel::Log::GetCoreLogger(), __VA_ARGS__)  // red
+#define CORE_FATAL(...)                                 \
+  SPDLOG_LOGGER_CRITICAL(::hazel::Log::GetCoreLogger(), \
+                         __VA_ARGS__)  // highlighted red
 
 // client log macros
-#define APP_TRACE(...) ::hazel::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define APP_DEBUG(...) ::hazel::Log::GetClientLogger()->debug(__VA_ARGS__)
-#define APP_INFO(...) ::hazel::Log::GetClientLogger()->info(__VA_ARGS__)
-#define APP_WARN(...) ::hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define APP_ERROR(...) ::hazel::Log::GetClientLogger()->error(__VA_ARGS__)
-#define APP_FATAL(...) ::hazel::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define APP_TRACE(...) \
+  SPDLOG_LOGGER_TRACE(::hazel::Log::GetClientLogger(), __VA_ARGS__)
+#define APP_DEBUG(...) \
+  SPDLOG_LOGGER_DEBUG(::hazel::Log::GetClientLogger(), __VA_ARGS__)
+#define APP_INFO(...) \
+  SPDLOG_LOGGER_INFO(::hazel::Log::GetClientLogger(), __VA_ARGS__)
+#define APP_WARN(...) \
+  SPDLOG_LOGGER_WARN(::hazel::Log::GetClientLogger(), __VA_ARGS__)
+#define APP_ERROR(...) \
+  SPDLOG_LOGGER_ERROR(::hazel::Log::GetClientLogger(), __VA_ARGS__)
+#define APP_FATAL(...) \
+  SPDLOG_LOGGER_CRITICAL(::hazel::Log::GetClientLogger(), __VA_ARGS__)
