@@ -18,6 +18,7 @@ Application::Application() {
 
 Application::~Application() {}
 
+///@brief event poll once per frame
 void Application::OnEvent(Event& e) {
   EventDispatcher dispatcher(e);
   dispatcher.Dispatch<WindowCloseEvent>(
@@ -29,9 +30,10 @@ void Application::OnEvent(Event& e) {
     if (e.handled) break;
   }
 
-  CORE_INFO("{}", e);
+  //CORE_INFO("{}", e);
 }
 
+///@brief run when cpu idle
 void Application::Run() {
   // WindowResizeEvent e(1200, 720);
   // if (e.IsInCategory(EventCategoryApp)) {
@@ -39,9 +41,6 @@ void Application::Run() {
   // }
   while (running_) {
     for (Layer* layer : layer_stack_) layer->OnUpdate();
-
-    auto [x, y] = Input::GetMousePos();
-    CORE_TRACE("{}, {}", x, y);
 
     window_->OnUpdate();
   }

@@ -5,11 +5,18 @@ class TestLayer : public hazel::Layer {
   TestLayer() : Layer("Test Layer") {}
 
   void OnUpdate() override {
-    // APP_INFO(__func__);
-    // APP_INFO(__FUNCTION__);
+    if (hazel::Input::IsKeyPressed(hazel::key::Tab)) {
+      APP_TRACE("key Tab is pressed.");
+    }
   }
 
-  void OnEvent(hazel::Event& e) override { APP_TRACE("{}", e); }
+  void OnEvent(hazel::Event& e) override {
+    // APP_TRACE("{} {}", __FUNCTION__, e);
+    if (e.GetType() == hazel::EventType::KeyPressed) {
+      hazel::KeyPressedEvent& ee = (hazel::KeyPressedEvent&)e;
+      APP_TRACE("{}", (char)(ee.GetKeyCode()));
+    }
+  }
 };
 
 class Sandbox : public hazel::Application {
