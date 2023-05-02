@@ -1,18 +1,19 @@
 #pragma once
-#include "hazel/events/event.h"
 #include "hazel/core.hpp"
+#include "hazel/events/event.h"
 
 namespace hazel {
 
 class HAZEL_API Layer {
  public:
   Layer(const std::string& name = "Layer");
-  virtual ~Layer();
+  virtual ~Layer() = default;
 
-  virtual void OnAttach(){};
-  virtual void OnDetach(){};
-  virtual void OnUpdate(){};
-  virtual void OnEvent(Event& event){};
+  virtual void OnAttach() {}
+  virtual void OnDetach() {}
+  virtual void OnUpdate() {}
+  virtual void OnEvent(Event& event) {}
+  virtual void OnImGuiRender() {}
 
   inline const std::string& GetName() const { return debug_name_; }
 

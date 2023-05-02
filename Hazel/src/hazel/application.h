@@ -1,5 +1,6 @@
 #pragma once
 #include "hazel/events/app_event.h"
+#include "hazel/imgui/imgui_layer.h"
 #include "hazel/layer_stack.h"
 #include "window.h"
 
@@ -20,12 +21,16 @@ class HAZEL_API Application {
 
  private:
   bool OnWindowClose(WindowCloseEvent& e);
-
+  bool OnWindowResize(WindowResizeEvent& e);
+  
   static Application* instance_;
 
   Scope<Window> window_;
-  bool running_ = true;
+  ImGuiLayer* imgui_layer_;
   LayerStack layer_stack_;
+
+  bool running_ = true;
+  bool minimized_ = false;
 };
 
 // to be defined in CLIENT

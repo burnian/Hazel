@@ -2,6 +2,7 @@
 .vscode
 *.sln
 *.vcxproj*
+*.ini
 
 bin
 bin_int

@@ -18,11 +18,11 @@ class HAZEL_API LayerStack {
 
   std::vector<Layer*>::iterator begin() { return layers_.begin(); }
   std::vector<Layer*>::iterator end() { return layers_.end(); }
-  size_t size() { return layers_.size(); }
+  unsigned int size() { return layers_.size(); }
 
  private:
   std::vector<Layer*> layers_;
-  std::vector<Layer*>::iterator layer_itr_;  // layer_insert_;
+  unsigned int layer_insert_idx_;  // layer_insert_;
 };
 
 }  // namespace hazel
