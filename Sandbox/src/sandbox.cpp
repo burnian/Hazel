@@ -1,4 +1,5 @@
 #include "hazel.h"
+#include "imgui/imgui.h"
 
 class TestLayer : public hazel::Layer {
  public:
@@ -16,6 +17,13 @@ class TestLayer : public hazel::Layer {
       hazel::KeyPressedEvent& ee = (hazel::KeyPressedEvent&)e;
       APP_TRACE("{}", (char)(ee.GetKeyCode()));
     }
+  }
+
+  void OnImGuiRender() {
+    ImGui::Begin("Test");
+    ImGui::Text("Hello World!");
+    ImGui::ColorEdit4("", new float[4]);
+    ImGui::End();
   }
 };
 
